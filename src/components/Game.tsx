@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AdventureNode } from "./AdventureNode";
+import { CharacterSheet } from "./CharacterSheet";
 import { useGame } from "@/contexts/GameContext";
 import { Node } from "@/types/gameTypes";
 import sampleAdventure from "../../data/sampleAdventure.json";
@@ -52,10 +53,19 @@ export function Game() {
 
   // Display character stats
   const renderCharacterStats = () => (
-    <div className="character-stats">
-      <p>Hit Points: {state.character.hitPoints}</p>
-      <p>Force Points: {state.character.forcePoints}</p>
-      <p>Current Node: {state.currentNodeId}</p>
+    <div className="character-sheet bg-gray-100 p-4 rounded-lg shadow text-gray-900">
+      <h3 className="text-xl font-bold mb-3 text-black">Character Sheet</h3>
+      <div className="stat-item mb-2 text-black">
+        <span className="font-medium text-black">Hit Points:</span>{" "}
+        {state.character.hitPoints}
+      </div>
+      <div className="stat-item mb-2 text-black">
+        <span className="font-medium text-black">Force Points:</span>{" "}
+        {state.character.forcePoints}
+      </div>
+      <div className="text-xs text-gray-700 mt-4">
+        Current Node: {state.currentNodeId}
+      </div>
     </div>
   );
 
@@ -68,9 +78,11 @@ export function Game() {
   }
 
   return (
-    <div className="game-container">
-      {renderCharacterStats()}
-      <AdventureNode node={currentNode} />
+    <div className="game-container grid grid-cols-3 gap-6">
+      <div className="adventure-content col-span-2">
+        <AdventureNode node={currentNode} />
+      </div>
+      <div className="character-sheet-container">{renderCharacterStats()}</div>
     </div>
   );
 }
