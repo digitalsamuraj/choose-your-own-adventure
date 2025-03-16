@@ -1,0 +1,16 @@
+{
+  "name": "Jedi Apprentice",
+  "stats": {
+    "hitPoints": 20,
+    "maxHitPoints": 20,
+    "forcePoints": 3,
+    "maxForcePoints": 3,
+    "combat": 5,
+    "wisdom": 3
+  },
+  "flags": {
+    "hasLightsaber": true,
+    "foundMedkit": false,
+    "metDroid": false
+  }
+}

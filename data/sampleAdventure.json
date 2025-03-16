@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "title": "The Jedi Trial",
+    "setting": "Star Wars",
+    "theme": "Space Fantasy",
+    "expectedPlaytime": "15 minutes",
+    "description": "A young Jedi apprentice faces their first real challenge aboard an abandoned space station."
+  },
+  "nodes": {
+    "1": {
+      "id": "1",
+      "type": "narrative",
+      "text": "You stand in the dimly lit docking bay of an abandoned space station. Your master has sent you here as part of your training, but something feels off. The force whispers warnings in your mind.",
+      "choices": [
+        {
+          "text": "Ignite your lightsaber and proceed cautiously",
+          "nextNode": "2",
+          "requirements": {
+            "flags": {
+              "hasLightsaber": true
+            }
+          }
+        },
+        {
+          "text": "Use force sense to scan the area",
+          "nextNode": "3",
+          "requirements": {
+            "forcePoints": 1
+          },
+          "actions": {
+            "modifyForcePoints": -1
+          }
+        },
+        {
+          "text": "Look around for any signs of recent activity",
+          "nextNode": "4"
+        }
+      ]
+    },
+    "2": {
+      "id": "2",
+      "type": "narrative",
+      "text": "With your lightsaber's blue glow illuminating the way, you move forward. The humming of your weapon is reassuring in the eerie silence.",
+      "choices": [
+        {
+          "text": "Head towards the control room",
+          "nextNode": "5"
+        },
+        {
+          "text": "Investigate strange sounds from the cargo bay",
+          "nextNode": "6"
+        }
+      ]
+    },
+    "3": {
+      "id": "3",
+      "type": "narrative",
+      "text": "You close your eyes and reach out with the Force. You sense mechanical movement in the cargo bay and a faint dark presence somewhere above.",
+      "choices": [
+        {
+          "text": "Investigate the cargo bay",
+          "nextNode": "6"
+        },
+        {
+          "text": "Head upstairs towards the presence",
+          "nextNode": "7"
+        }
+      ]
+    },
+    "4": {
+      "id": "4",
+      "type": "narrative",
+      "text": "You find recent droid tracks in the dust and a dropped medkit.",
+      "choices": [
+        {
+          "text": "Take the medkit and follow the tracks",
+          "nextNode": "6",
+          "actions": {
+            "setFlag": {
+              "foundMedkit": true
+            }
+          }
+        },
+        {
+          "text": "Leave the medkit and head to the control room",
+          "nextNode": "5"
+        }
+      ]
+    },
+    "5": {
+      "id": "5",
+      "type": "combat",
+      "text": "As you enter the control room, a security droid activates and raises its weapons!",
+      "enemy": {
+        "name": "Security Droid",
+        "hitPoints": 15,
+        "attack": 4,
+        "defense": 3
+      },
+      "outcomes": {
+        "victory": {
+          "nextNode": "8",
+          "text": "The droid crashes to the ground, sparking and disabled."
+        },
+        "defeat": {
+          "nextNode": "9",
+          "text": "The droid overwhelms you. Your mission ends here..."
+        }
+      }
+    },
+    "6": {
+      "id": "6",
+      "type": "narrative",
+      "text": "In the cargo bay, you find a damaged but friendly maintenance droid. It beeps at you apologetically, warning about the security systems that have gone haywire.",
+      "choices": [
+        {
+          "text": "Ask the droid for help bypassing security",
+          "nextNode": "10",
+          "actions": {
+            "setFlag": {
+              "metDroid": true
+            }
+          }
+        },
+        {
+          "text": "Thank the droid and head to the control room alone",
+          "nextNode": "5"
+        }
+      ]
+    }
+  }
+}

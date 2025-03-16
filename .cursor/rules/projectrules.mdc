@@ -1,0 +1,118 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+
+## Code Style and Structure
+- Write concise, technical TypeScript code with accurate examples
+- Use functional and declarative programming patterns; avoid classes
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
+- Structure repository files as follows:
+```
+src/
+├── app/             # Next.js app router pages
+├── components/      # Shared React components
+├── hooks/          # Custom React hooks
+├── utils/          # Helper functions
+├── types/          # TypeScript types
+├── lib/            # Shared libraries
+├── context/        # React context providers
+├── services/       # API and external service integrations
+└── styles/         # Global styles and tailwind configurations
+public/             # Static assets
+```
+
+## Tech Stack
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Shadcn UI
+
+## Naming Conventions
+- Use lowercase with dashes for directories (e.g., components/form-wizard)
+- Favor named exports for components and utilities
+- Use PascalCase for component files (e.g., StoryForm.tsx)
+- Use camelCase for utility files (e.g., formValidator.ts)
+
+## TypeScript Usage
+- Use TypeScript for all code; prefer interfaces over types
+- Avoid enums; use const objects with 'as const' assertion
+- Use functional components with TypeScript interfaces
+- Define strict types for data structures and API responses
+- Use absolute imports for all files @/...
+- Avoid try/catch blocks unless there's good reason to translate or handle error in that abstraction
+- Use explicit return types for all functions
+
+## State Management
+- Use React Context for global state when needed
+- Implement proper state persistence using localStorage or cookies as appropriate
+- Implement proper cleanup in useEffect hooks
+- Consider using React Query for server state management
+
+## Syntax and Formatting
+- Use "function" keyword for pure functions
+- Avoid unnecessary curly braces in conditionals
+- Use declarative JSX
+- Implement proper TypeScript discriminated unions for complex type scenarios
+
+## UI and Styling
+- Use Shadcn UI and Radix for components
+- Use `npx shadcn@latest add <component-name>` to add new shadcn components
+- Implement Tailwind CSS for styling
+- Follow responsive design best practices
+- When adding new shadcn component, document the installation command
+
+## Error Handling
+- Implement proper error boundaries
+- Log errors appropriately for debugging
+- Provide user-friendly error messages
+- Handle network failures gracefully
+- Use Next.js error handling patterns for app router
+
+## Testing
+- Write unit tests for utilities and components
+- Implement E2E tests for critical flows
+- Test memory usage and performance
+- Test across different browsers and devices
+
+## Security
+- Implement Content Security Policy
+- Sanitize user inputs
+- Handle sensitive data properly
+- Follow web security best practices
+- Implement proper CORS handling for API routes
+
+## Git Usage
+Commit Message Prefixes:
+- "fix:" for bug fixes
+- "feat:" for new features
+- "perf:" for performance improvements
+- "docs:" for documentation changes
+- "style:" for formatting changes
+- "refactor:" for code refactoring
+- "test:" for adding missing tests
+- "chore:" for maintenance tasks
+
+Rules:
+- Use lowercase for commit messages
+- Keep the summary line concise
+- Include description for non-obvious changes
+- Reference issue numbers when applicable
+
+## Documentation
+- Maintain clear README with setup instructions
+- Document API interactions and data flows
+- Document key features and architecture decisions
+- Don't include comments unless it's for complex logic
+- Keep API documentation current
+
+## Development Workflow
+- Use proper version control
+- Implement proper code review process
+- Test in multiple environments
+- Follow semantic versioning for releases
+- Maintain changelogo
