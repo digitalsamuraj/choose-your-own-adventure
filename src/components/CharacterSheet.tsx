@@ -7,18 +7,20 @@ export function CharacterSheet() {
 
   return (
     <div className="character-sheet bg-gray-100 p-4 rounded-lg shadow">
-      <h3 className="text-xl font-bold mb-3 border-b pb-2">Character Sheet</h3>
+      <h3 className="text-xl font-bold mb-3 border-b pb-2 text-black">
+        Character Sheet
+      </h3>
 
       <div className="stats-section mb-4">
-        <h4 className="text-lg font-semibold mb-2">Vitals</h4>
+        <h4 className="text-lg font-semibold mb-2 text-black">Vitals</h4>
         <div className="stat-item mb-2 flex justify-between">
-          <span className="font-medium">Hit Points:</span>
+          <span className="font-medium text-black">Hit Points:</span>
           <span className="text-red-600 font-bold">
             {state.character.hitPoints}
           </span>
         </div>
         <div className="stat-item mb-2 flex justify-between">
-          <span className="font-medium">Force Points:</span>
+          <span className="font-medium text-black">Force Points:</span>
           <span className="text-blue-600 font-bold">
             {state.character.forcePoints}
           </span>
@@ -26,11 +28,11 @@ export function CharacterSheet() {
       </div>
 
       <div className="stats-section mb-4">
-        <h4 className="text-lg font-semibold mb-2">Flags</h4>
+        <h4 className="text-lg font-semibold mb-2 text-black">Flags</h4>
         <div className="grid grid-cols-1 gap-1">
           {Object.entries(state.character.flags || {}).map(([flag, value]) => (
             <div key={flag} className="flag-item flex justify-between">
-              <span className="font-medium">{flag}:</span>
+              <span className="font-medium text-black">{flag}:</span>
               <span className={value ? "text-green-600" : "text-gray-600"}>
                 {value ? "Yes" : "No"}
               </span>

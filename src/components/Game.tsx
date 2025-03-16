@@ -51,24 +51,6 @@ export function Game() {
     }
   }, [state.currentNodeId]);
 
-  // Display character stats
-  const renderCharacterStats = () => (
-    <div className="character-sheet bg-gray-100 p-4 rounded-lg shadow text-gray-900">
-      <h3 className="text-xl font-bold mb-3 text-black">Character Sheet</h3>
-      <div className="stat-item mb-2 text-black">
-        <span className="font-medium text-black">Hit Points:</span>{" "}
-        {state.character.hitPoints}
-      </div>
-      <div className="stat-item mb-2 text-black">
-        <span className="font-medium text-black">Force Points:</span>{" "}
-        {state.character.forcePoints}
-      </div>
-      <div className="text-xs text-gray-700 mt-4">
-        Current Node: {state.currentNodeId}
-      </div>
-    </div>
-  );
-
   if (loadError) {
     return <div className="error-message">Error: {loadError}</div>;
   }
@@ -82,7 +64,9 @@ export function Game() {
       <div className="adventure-content col-span-2">
         <AdventureNode node={currentNode} />
       </div>
-      <div className="character-sheet-container">{renderCharacterStats()}</div>
+      <div className="character-sheet-container">
+        <CharacterSheet />
+      </div>
     </div>
   );
 }
