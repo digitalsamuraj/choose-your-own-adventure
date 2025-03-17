@@ -1,38 +1,38 @@
 {
   "metadata": {
-    "title": "The Jedi Trial",
-    "setting": "Star Wars",
-    "theme": "Space Fantasy",
-    "expectedPlaytime": "15 minutes",
-    "description": "A young Jedi apprentice faces their first real challenge aboard an abandoned space station."
+    "title": "Zonstrykarens Prövning",
+    "setting": "Mutant: År Noll",
+    "theme": "Post-apokalyptisk överlevnad",
+    "expectedPlaytime": "15 minuter",
+    "description": "Som ung zonstrykare lämnar du Arken för att utforska Zonen. Din mentor har gett dig i uppdrag att undersöka en övergiven ruin, där rykten om farliga säkerhetssystem och dolda hemligheter sprids. Din unika förmåga att leda genom Zonen är ditt främsta vapen – men farorna är många."
   },
   "nodes": {
     "1": {
       "id": "1",
       "type": "narrative",
-      "text": "You stand in the dimly lit docking bay of an abandoned space station. Your master has sent you here as part of your training, but something feels off. The force whispers warnings in your mind.",
+      "text": "Du står vid utkanten av Arken, där den ödelagda världen breder ut sig. Din mentor, en erfaren fixare, har befallt dig att lämna tryggheten och ge dig ut i Zonen. Du är zonstrykare – den enda som kan hitta säkra passager genom ruinerna. En kall vind blåser och du känner att något är på väg att hända.",
       "choices": [
         {
-          "text": "Ignite your lightsaber and proceed cautiously",
+          "text": "Dra fram din zonstrykare och gå in i den nedgångna ruinen",
           "nextNode": "2",
           "requirements": {
             "flags": {
-              "hasLightsaber": true
+              "isZonstrykare": true
             }
           }
         },
         {
-          "text": "Use force sense to scan the area",
+          "text": "Använd din zonkänsla för att skanna området",
           "nextNode": "3",
           "requirements": {
-            "forcePoints": 1
+            "zonePoints": 1
           },
           "actions": {
-            "modifyForcePoints": -1
+            "modifyZonePoints": -1
           }
         },
         {
-          "text": "Look around for any signs of recent activity",
+          "text": "Undersök marken för spår av överlevare",
           "nextNode": "4"
         }
       ]
@@ -40,14 +40,14 @@
     "2": {
       "id": "2",
       "type": "narrative",
-      "text": "With your lightsaber's blue glow illuminating the way, you move forward. The humming of your weapon is reassuring in the eerie silence.",
+      "text": "Med din zonstrykare i hand tar du dig in i ruinen. Den en gång livliga byggnaden är nu tyst och fylld med damm och skugga. Du hör ett svagt, nästan mekaniskt ljud som får ditt hjärta att slå lite snabbare.",
       "choices": [
         {
-          "text": "Head towards the control room",
+          "text": "Fortsätt mot det gamla kontrollrummet",
           "nextNode": "5"
         },
         {
-          "text": "Investigate strange sounds from the cargo bay",
+          "text": "Utforska ljudet som kommer från en mörk källare",
           "nextNode": "6"
         }
       ]
@@ -55,14 +55,14 @@
     "3": {
       "id": "3",
       "type": "narrative",
-      "text": "You close your eyes and reach out with the Force. You sense mechanical movement in the cargo bay and a faint dark presence somewhere above.",
+      "text": "Du sluter ögonen ett ögonblick och lyssnar med din inre zonkänsla. Genom dimman känner du av en ovanlig rörelse – kanske ett tecken på en farlig fiende eller ett gammalt fornlämning som väntar på att upptäckas.",
       "choices": [
         {
-          "text": "Investigate the cargo bay",
+          "text": "Följ ljudet från källaren",
           "nextNode": "6"
         },
         {
-          "text": "Head upstairs towards the presence",
+          "text": "Rikta blicken mot en högre struktur där en mystisk närvaro känns",
           "nextNode": "7"
         }
       ]
@@ -70,19 +70,19 @@
     "4": {
       "id": "4",
       "type": "narrative",
-      "text": "You find recent droid tracks in the dust and a dropped medkit.",
+      "text": "På marken ser du färska fotspår i det dammiga gruset, tillsammans med en trasig reservdosa med vatten. Spåren tyder på att någon nyligen varit här – kanske en överlevare eller något annat.",
       "choices": [
         {
-          "text": "Take the medkit and follow the tracks",
+          "text": "Plocka upp dosan och följ spåren",
           "nextNode": "6",
           "actions": {
             "setFlag": {
-              "foundMedkit": true
+              "foundWaterDose": true
             }
           }
         },
         {
-          "text": "Leave the medkit and head to the control room",
+          "text": "Ignorera dosan och bege dig direkt mot kontrollrummet",
           "nextNode": "5"
         }
       ]
@@ -90,9 +90,9 @@
     "5": {
       "id": "5",
       "type": "combat",
-      "text": "As you enter the control room, a security droid activates and raises its weapons!",
+      "text": "När du kliver in i kontrollrummet aktiveras ett gammalt säkerhetssystem. Plötsligt vaknar en muterad vaktrobot till liv och riktar sina skrotvapen mot dig!",
       "enemy": {
-        "name": "Security Droid",
+        "name": "Vaktrobot",
         "hitPoints": 15,
         "attack": 4,
         "defense": 3
@@ -100,31 +100,73 @@
       "outcomes": {
         "victory": {
           "nextNode": "8",
-          "text": "The droid crashes to the ground, sparking and disabled."
+          "text": "Roboten går sönder med gnistor och faller livlös på golvet."
         },
         "defeat": {
           "nextNode": "9",
-          "text": "The droid overwhelms you. Your mission ends here..."
+          "text": "Roboten övermannar dig. Din prövning i Zonen tar slut här."
         }
       }
     },
     "6": {
       "id": "6",
       "type": "narrative",
-      "text": "In the cargo bay, you find a damaged but friendly maintenance droid. It beeps at you apologetically, warning about the security systems that have gone haywire.",
+      "text": "I en mörk källare finner du en trasig men vänlig reparatörsrobot. Den piper svagt och förklarar att säkerhetssystemet är ur funktion – men att du måste vara försiktig med de gamla installationerna i ruinen.",
       "choices": [
         {
-          "text": "Ask the droid for help bypassing security",
+          "text": "Be om robotens hjälp att stänga av säkerhetssystemet",
           "nextNode": "10",
           "actions": {
             "setFlag": {
-              "metDroid": true
+              "metRobot": true
             }
           }
         },
         {
-          "text": "Thank the droid and head to the control room alone",
+          "text": "Tacka roboten och fortsätt ensam mot kontrollrummet",
           "nextNode": "5"
+        }
+      ]
+    },
+    "7": {
+      "id": "7",
+      "type": "narrative",
+      "text": "Du klättrar försiktigt upp mot en högre del av ruinen där en dämpad, nästan hypnotisk närvaro känns. Känslan av fara växer, och du inser att något större än en ensam vaktrobot kan vara på väg.",
+      "choices": [
+        {
+          "text": "Närma dig strukturen för att se bättre",
+          "nextNode": "10"
+        },
+        {
+          "text": "Vänd om och återvänd mot Arken",
+          "nextNode": "9"
+        }
+      ]
+    },
+    "8": {
+      "id": "8",
+      "type": "narrative",
+      "text": "Du har besegrat vaktroboten och nu ligger kontrollrummet öppet framför dig. Genom de trasiga systemen får du en glimt av värdefulla uppgifter som kan leda dig genom Zonen på ett säkrare sätt. Din prövning är lyckad – ett viktigt steg mot att leda Folket genom ruinerna.",
+      "choices": []
+    },
+    "9": {
+      "id": "9",
+      "type": "narrative",
+      "text": "Farorna i Zonen visar sig vara för starka denna gång. Du faller offer för de hot som lurar i ruinen, och din resa slutar här.",
+      "choices": []
+    },
+    "10": {
+      "id": "10",
+      "type": "narrative",
+      "text": "Med hjälp av robotens råd lyckas du tillfälligt stänga av delar av säkerhetssystemet. Detta öppnar upp en hemlig passage genom ruinen – kanske den säkra väg som din mentor talade om. Nu har du en möjlighet att navigera Zonen på ett nytt sätt.",
+      "choices": [
+        {
+          "text": "Följ den nya passagen ut ur ruinen",
+          "nextNode": "8"
+        },
+        {
+          "text": "Utforska vidare i ruinen för att hitta fler ledtrådar",
+          "nextNode": "7"
         }
       ]
     }

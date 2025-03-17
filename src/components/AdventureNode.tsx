@@ -10,10 +10,10 @@ export function AdventureNode({ node }: { node: Node }) {
     // Check requirements
     if (choice.requirements) {
       if (
-        choice.requirements.forcePoints &&
-        state.character.forcePoints < choice.requirements.forcePoints
+        choice.requirements.mutantPoints &&
+        state.character.stats.mutantPoints < choice.requirements.mutantPoints
       ) {
-        return; // Not enough force points
+        return; // Not enough mutant points
       }
 
       if (choice.requirements.flags) {
@@ -29,10 +29,10 @@ export function AdventureNode({ node }: { node: Node }) {
 
     // Apply actions
     if (choice.actions) {
-      if (choice.actions.modifyForcePoints) {
+      if (choice.actions.modifyMutantPoints) {
         dispatch({
-          type: "MODIFY_FORCE_POINTS",
-          amount: choice.actions.modifyForcePoints,
+          type: "MODIFY_MUTANT_POINTS",
+          amount: choice.actions.modifyMutantPoints,
         });
       }
       if (choice.actions.setFlag) {

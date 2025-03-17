@@ -7,25 +7,21 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { GameState } from "@/types/gameTypes";
+import { GameState, CharacterState } from "@/types/gameTypes";
+import initialCharacterState from "../../data/initialCharacterState.json";
 
 type GameAction =
   | { type: "CHOOSE_PATH"; nodeId: string }
-  | { type: "MODIFY_FORCE_POINTS"; amount: number }
+  | { type: "MODIFY_MUTANT_POINTS"; amount: number }
   | { type: "SET_FLAG"; flag: string; value: boolean }
   | { type: "TAKE_DAMAGE"; amount: number };
 
-const initialGameState: GameState = {
+// Separate the initial game state configuration
+const createNewGameState = (): GameState => ({
   currentNodeId: "1",
-  character: {
-    hitPoints: 20,
-    forcePoints: 3,
-    flags: {
-      hasLightsaber: true, // Setting this to true by default for testing
-    },
-  },
+  character: initialCharacterState as CharacterState,
   isGameOver: false,
-};
+});
 
 const GameContext = createContext<
   | {
@@ -36,7 +32,8 @@ const GameContext = createContext<
 >(undefined);
 
 export function GameProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(gameReducer, initialGameState);
+  // Use the factory function to create the initial state
+  const [state, dispatch] = useReducer(gameReducer, createNewGameState());
 
   // Debug log to check state
   useEffect(() => {
@@ -57,12 +54,15 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         ...state,
         currentNodeId: action.nodeId,
       };
-    case "MODIFY_FORCE_POINTS":
+    case "MODIFY_MUTANT_POINTS":
       return {
         ...state,
         character: {
           ...state.character,
-          forcePoints: state.character.forcePoints + action.amount,
+          stats: {
+            ...state.character.stats,
+            mutantPoints: state.character.stats.mutantPoints + action.amount,
+          },
         },
       };
     case "SET_FLAG":
@@ -79,13 +79,16 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     case "TAKE_DAMAGE":
       const newHitPoints = Math.max(
         0,
-        state.character.hitPoints - action.amount
+        state.character.stats.hitPoints - action.amount
       );
       return {
         ...state,
         character: {
           ...state.character,
-          hitPoints: newHitPoints,
+          stats: {
+            ...state.character.stats,
+            hitPoints: newHitPoints,
+          },
         },
         isGameOver: newHitPoints <= 0,
       };

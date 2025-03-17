@@ -1,6 +1,16 @@
-export interface CharacterState {
+export interface CharacterStats {
   hitPoints: number;
-  forcePoints: number;
+  maxHitPoints: number;
+  mutantPoints: number;
+  maxMutantPoints: number;
+  survival: number;
+  combat: number;
+  knowledge: number;
+}
+
+export interface CharacterState {
+  name: string;
+  stats: CharacterStats;
   flags: {
     [key: string]: boolean;
   };
@@ -19,10 +29,10 @@ export interface Choice {
     flags?: {
       [key: string]: boolean;
     };
-    forcePoints?: number;
+    mutantPoints?: number;
   };
   actions?: {
-    modifyForcePoints?: number;
+    modifyMutantPoints?: number;
     setFlag?: {
       [key: string]: boolean;
     };
@@ -51,3 +61,5 @@ export interface Node {
     };
   };
 }
+
+// Character interface removed since CharacterState is already defined above

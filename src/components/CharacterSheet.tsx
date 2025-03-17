@@ -16,13 +16,13 @@ export function CharacterSheet() {
         <div className="stat-item mb-2 flex justify-between">
           <span className="font-medium text-black">Hit Points:</span>
           <span className="text-red-600 font-bold">
-            {state.character.hitPoints}
+            {state.character.stats.hitPoints}
           </span>
         </div>
         <div className="stat-item mb-2 flex justify-between">
-          <span className="font-medium text-black">Force Points:</span>
+          <span className="font-medium text-black">Mutant Points:</span>
           <span className="text-blue-600 font-bold">
-            {state.character.forcePoints}
+            {state.character.stats.mutantPoints}
           </span>
         </div>
       </div>
